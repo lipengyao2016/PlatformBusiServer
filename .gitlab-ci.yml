@@ -1,0 +1,26 @@
+test:
+ script:
+  - ServerName=PlatformBusiServer
+  - /opt/createFile.sh ${ServerName}
+  #- npm install
+  #- npm install grunt >null
+  #- printf "Coverage test report view detail by visiting http://192.168.7.201:8087/coverage/%s/index.html\n" ${ServerName}
+  #- printf "Apidoc view detail by visiting http://192.168.7.201:8087/apidoc/%s/index.html\n" ${ServerName}
+  - echo "Coverage test report view detail by visiting http://192.168.7.250:8087/coverage/${ServerName}/index.html"
+  - echo "Apidoc view detail by visiting http://192.168.7.250:8087/apidoc/${ServerName}/index.html"
+  - export server_domain="localhost"
+  - export server_port=5000
+  - export knex_client="mysql"
+  - export knex_connection_host="localhost"
+  - export knex_connection_port=3306
+  - export knex_connection_user="root"
+  - export knex_connection_password="123456"
+  - export knex_connection_database=${ServerName}DB
+  - export knex_pool_min=0
+  - export knex_pool_max=7
+
+  - mkdocs build -c
+  - cp -R $(pwd)/site/* /opt/devDocument/apidoc/${ServerName}
+  #  - mysql -h $knex_connection_host -u $knex_connection_user -p$knex_connection_password -e "source "$(pwd)"/doc/${ServerName}.sql"
+  #  - grunt coverage
+  #  - cp -R $(pwd)/coverage/lcov-report/* /opt/devDocument/coverage/${ServerName}

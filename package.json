@@ -1,0 +1,36 @@
+{
+  "name": "PlatformBusiServer",
+  "version": "1.0.0",
+  "description": "PlatformBusiServer",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.icarcloud.net:iCarCloud/BCS/BCPlatform/IntelligentCabinet/PlatformBusiServer.git"
+  },
+  "main": "index.js",
+  "keywords": [
+    "rest",
+    "router",
+    "koa",
+    "http",
+    "middleware"
+  ],
+  "author": "lipy",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "common-request": "^0.0.1",
+    "componet-service-framework": "^1.0.1",
+    "develop-utils": "0.0.5",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-json-url-expand": "^1.0.1",
+    "koa-jwt": "^3.3.1",
+    "koa-logger": "^3.1.0",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.5",
+    "log4js": "^1.1.1",
+    "mocha": "^4.1.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}
