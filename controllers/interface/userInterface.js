@@ -19,3 +19,18 @@ exports.registerUser = async (ctx, next) => {
         devUtils.handlerError(ctx, e);
     }
 };
+
+exports.deleteUser = async (ctx, next) => {
+    try {
+
+        let body = _.clone(ctx.request.body);
+        let params = ctx.params;
+        let query = _.clone(ctx.request.query);
+        let ret = await userBusiness.deleteUser(body.userHref);
+        ctx.body = ret;
+        ctx.status = 200;
+    }
+    catch (e) {
+        devUtils.handlerError(ctx, e);
+    }
+};

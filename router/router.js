@@ -14,4 +14,6 @@ router.get('/api/:version/roleDetails',rolesInterface.getRoleDetails);
  lpy-modifyed  */
 router.post('/api/:version/registerUser',userInterface.registerUser);
 
+router.post('/api/:version/deleteUser',userInterface.deleteUser);
+
 module.exports = router;

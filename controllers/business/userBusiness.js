@@ -8,7 +8,8 @@ const config = require('../../config/config');
 const userProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_Users);
 const accountProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_Accounts);
 const DistritubeExtraTranction = require('componet-service-framework').distritubeExtraTranction;
-
+const resourceURI = require('../resource/resourceURI');
+const URIParser = resourceURI.v1;
 
 class UserBusiness{
     constructor(){}
@@ -40,6 +41,61 @@ class UserBusiness{
         }
 
         return retObj;
+    }
+
+    async deleteUser(userHref)
+    {
+        console.log('UserBusiness->deleteUser  userHref :',userHref );
+        let userRet = await request.get(userHref,{expand:'account'});
+        if(userRet.statusCode != 200)
+        {
+            console.error('deleteUser get user data error!!!',userHref);
+            devUtils.Error('Error',404,1599,`get user data error: ${userHref}  `);
+        }
+        let accountHref = userRet.body.account.href;
+
+        let accountObj = userRet.body.account;
+
+        let disTran = new DistritubeExtraTranction();
+
+        let retObj = {};
+        try
+        {
+            if(accountHref)
+            {
+                let accountRet = await request.delete(accountHref);
+                if(accountRet.statusCode != 204)
+                {
+                    console.error('deleteUser delete account error!!!',accountHref);
+                    devUtils.Error('Error',404,1599,` delete account error: ${accountHref}  `);
+                }
+                let accountUrl = URIParser.baseResourcesURI(config.serverIndexs.Account_Server,'accounts');
+                disTran.addSingleFaileReq(accountUrl,{
+                    uuid:devUtils.getLastResourceUUIDInURL(accountObj.href),
+                    merchantNumber: accountObj.merchantNumber,
+                    name: accountObj.name,
+                    number: accountObj.number,
+                    mobile: accountObj.mobile,
+                    email: accountObj.email,
+                    applicationHref:accountObj.application.href,
+                },disTran.getHttpMethod().httpCreate);
+            }
+
+            let userRet = await request.delete(userHref);
+            if(userRet.statusCode != 204)
+            {
+                console.error('deleteUser delete user error!!!',userHref);
+                devUtils.Error('Error',404,1599,` delete user error: ${userHref}  `);
+            }
+            console.log('UserBusiness->deleteUser  success ');
+        }
+        catch (e) {
+            console.log('UserBusiness->deleteUser error,will rollback:', e);
+            await disTran.rollBack();
+            throw  e;
+        }
+
+        return true;
     }
 
 

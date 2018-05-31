@@ -31,15 +31,15 @@ describe('User Test Case:',function () {
             //this.timeout(0);
             let  data = {
                   user:{
-                      name: 'liufei',
-                      email: 'liufei@sina.com',
+                      name: 'yiyuan',
+                      email: 'yiyuan@sina.com',
                       roleHref:'http://192.168.7.151:6002/api/v1.0.0/roles/crIuZ8AcUHBdJAxVVSlHHQ',
                       applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
                       merchantHref:'http://192.168.7.151:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',
                   },
                 account:
                     {
-                        "name": "liufei",          // 账户名
+                        "name": "yiyuan",          // 账户名
                         "password": new Buffer("888888").toString('base64'),
                         applicationName:'LaiKoo-Platform',
                         merchantNumber :'90000017',
@@ -50,6 +50,19 @@ describe('User Test Case:',function () {
                     console.log('registerUser body:',JSON.stringify(body,null,2));
                     expect(statusCode).to.equal(201);
                 })
+        });
+
+
+        it('deleteUser a User  test case:',  function (){
+            //this.timeout(0);
+            let  data = {
+                userHref:'http://192.168.7.151:6003/api/v1.0.0/users/wFkx4Dbmhzr2pzUIHrX8bg'
+            };
+
+            return request.post(`${url}/deleteUser`,data,options).then(function ({statusCode,body,headers,request}) {
+                console.log('deleteUser body:',JSON.stringify(body,null,2));
+                expect(statusCode).to.equal(200);
+            })
         });
 
 
