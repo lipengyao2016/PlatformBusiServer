@@ -6,10 +6,12 @@ const config = require('../../config/config');
 let ResourceType =
     {
         Resource_Menu:0,
-/*        Resource_GoodsType:1,
-        Resource_Goods:2,
-        Resource_SortRecords:3,
-        Resource_DeliveryOrders:4,*/
+        Resource_Merchant:1,
+        Resource_Applications:2,
+        Resource_MenuGroups:3,
+        Resource_Roles:4,
+        Resource_Users:5,
+        Resource_Accounts:6,
     };
 
 
@@ -19,27 +21,39 @@ let proxyResourceMap = [
         index:ResourceType.Resource_Menu,
         serverIndex:config.serverIndexs.Menu_Server,
     },
-    /*{
-        name:'goodsTypes',
-        index:ResourceType.Resource_GoodsType,
-        serverIndex:config.serverIndexs.Goods_Server,
-    },
     {
-        name:'goods',
-        index:ResourceType.Resource_Goods,
-        serverIndex:config.serverIndexs.Goods_Server,
+        name:'merchants',
+        index:ResourceType.Resource_Merchant,
+        serverIndex:config.serverIndexs.Merchant_Server,
     },
+      {
+          name:'applications',
+          index:ResourceType.Resource_Applications,
+          serverIndex:config.serverIndexs.Account_Server,
+      },
+      {
+          name:'menuGroups',
+          index:ResourceType.Resource_MenuGroups,
+          serverIndex:config.serverIndexs.Menu_Server,
+      },
+
+      {
+          name:'roles',
+          index:ResourceType.Resource_Roles,
+          serverIndex:config.serverIndexs.Role_Server,
+      },
+
     {
-        name:'sortedRecords',
-        index:ResourceType.Resource_SortRecords,
-        serverIndex:config.serverIndexs.Goods_Server,
+        name:'users',
+        index:ResourceType.Resource_Users,
+        serverIndex:config.serverIndexs.User_Server,
     },
 
     {
-        name:'deliveryOrders',
-        index:ResourceType.Resource_DeliveryOrders,
-        serverIndex:config.serverIndexs.DeliveryOrder_Server,
-    },*/
+        name:'accounts',
+        index:ResourceType.Resource_Accounts,
+        serverIndex:config.serverIndexs.Account_Server,
+    },
 
 ];
 

@@ -46,27 +46,27 @@ let config = {
     },
 
     UserServer:{
-        host: 'localhost',
+        host: '192.168.7.151',
         port: 6003
     },
 
     RoleServer:{
-        host: 'localhost',
+        host: '192.168.7.151',
         port: 6002
     },
 
     AccountServer:{
-        host: 'localhost',
+        host: '192.168.7.151',
         port: 6000
     },
 
     MenuServer:{
-        host: 'localhost',
+        host: '192.168.7.151',
         port: 6001
     },
 
     MerchantServer:{
-        host: 'localhost',
+        host: '192.168.7.151',
         port: 6004
     },
 

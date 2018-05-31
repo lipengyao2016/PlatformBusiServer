@@ -23,58 +23,37 @@ let options = {
     //headers: header,
 };
 
-let rolesTestCase = {
-    name:'工程师',
-    description:'data',
-    applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
-    merchantHref:'http://192.168.7.151:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',
-    permissions:[
-        {
-            objectHref:'http://192.168.7.151:6001/api/v1.0.0/menus/8KMwPfurIZoEHfENAShS6g',
-            objectType:'menu',
-            applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
-        },
-        {
-            objectHref:'http://192.168.7.151:6001/api/v1.0.0/menus/mzNYalrUcBWrGsbxEsQcAQ',
-            objectType:'menu',
-            applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
-        },
-    ],
-};
 
+describe('User Test Case:',function () {
+    describe('User test case:',  function (){
 
-
-describe('create test case:',  ()=>{
-    it('success create an roles',  ()=> {
-        //this.timeout(0);
-
-        return request.post(`http://192.168.7.151:6002/api/v1.0.0/roles`,rolesTestCase).then( ( {statusCode, body, headers, request} )=>{
-            expect(statusCode).to.equal(201);
-            expect(headers['content-type']).to.equal('application/json; charset=utf-8');
-
-            console.log('roless test  create ' + ' body:'+JSON.stringify(body,null,2));
-        });
-    });
-});
-
-describe('Role Test Case:',function () {
-    describe('Role test case:',  function (){
-
-        it('get a Role details test case:',  function (){
+        it('register a User  test case:',  function (){
             //this.timeout(0);
-            let  qs = {
-              /*  roleHref:'http://localhost:6002/api/v1.0.0/roles/ujoQyy5P95WoR1KOFjuG5g',
-                applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',*/
-
-                roleHref:'http://localhost:6002/api/v1.0.0/roles/jmVlM29n94ZRRIRXhW1d6w',
-                applicationHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
+            let  data = {
+                  user:{
+                      name: 'liufei',
+                      email: 'liufei@sina.com',
+                      roleHref:'http://192.168.7.151:6002/api/v1.0.0/roles/crIuZ8AcUHBdJAxVVSlHHQ',
+                      applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
+                      merchantHref:'http://192.168.7.151:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',
+                  },
+                account:
+                    {
+                        "name": "liufei",          // 账户名
+                        "password": new Buffer("888888").toString('base64'),
+                        applicationName:'LaiKoo-Platform',
+                        merchantNumber :'90000017',
+                    }
             };
 
-            return request.get(`${url}/roleDetails`,qs,options).then(function ({statusCode,body,headers,request}) {
-                    console.log('body:',JSON.stringify(body,null,2));
-                    expect(statusCode).to.equal(200);
+            return request.post(`${url}/registerUser`,data,options).then(function ({statusCode,body,headers,request}) {
+                    console.log('registerUser body:',JSON.stringify(body,null,2));
+                    expect(statusCode).to.equal(201);
                 })
         });
+
+
+
     });
 });
 

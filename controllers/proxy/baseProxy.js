@@ -32,8 +32,9 @@ class BaseProxy {
         {
             ret = await request.get(actionUrl,data);
         }
-        if(ret.statusCode == 200)
+        if(ret.statusCode == 200 || ret.statusCode == 201)
         {
+            console.log('create url:' + actionUrl + ',data:' + JSON.stringify(ret.body,null,2));
             return ret.body;
         }
         else
@@ -51,6 +52,9 @@ class BaseProxy {
         let ret = await request.post(this.resourceUrl,data);
         if(ret.statusCode == 201)
         {
+
+            console.log('create url:' + this.resourceUrl + ',data:' + JSON.stringify(ret.body,null,2));
+
             if(disTran)
             {
                 disTran.addSingleFaileReq(ret.body.href,{},disTran.getHttpMethod().httpDelete);
