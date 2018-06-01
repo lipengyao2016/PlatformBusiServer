@@ -1,5 +1,8 @@
 "use strict";
 const fs = require('fs');
+
+let externHost = 'localhost';
+
 let config = {
     //服务器配置
     server: {
@@ -46,27 +49,27 @@ let config = {
     },
 
     UserServer:{
-        host: '192.168.7.151',
+        host: externHost,
         port: 6003
     },
 
     RoleServer:{
-        host: '192.168.7.151',
+        host: externHost,
         port: 6002
     },
 
     AccountServer:{
-        host: '192.168.7.151',
+        host: externHost,
         port: 6000
     },
 
     MenuServer:{
-        host: '192.168.7.151',
+        host: externHost,
         port: 6001
     },
 
     MerchantServer:{
-        host: '192.168.7.151',
+        host: externHost,
         port: 6004
     },
 

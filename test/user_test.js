@@ -31,15 +31,15 @@ describe('User Test Case:',function () {
             //this.timeout(0);
             let  data = {
                   user:{
-                      name: 'yiyuan',
-                      email: 'yiyuan@sina.com',
+                      name: 'liuzong',
+                      email: 'liuzong@sina.com',
                       roleHref:'http://192.168.7.151:6002/api/v1.0.0/roles/crIuZ8AcUHBdJAxVVSlHHQ',
                       applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
                       merchantHref:'http://192.168.7.151:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',
                   },
                 account:
                     {
-                        "name": "yiyuan",          // 账户名
+                        "name": "liuzong",          // 账户名
                         "password": new Buffer("888888").toString('base64'),
                         applicationName:'LaiKoo-Platform',
                         merchantNumber :'90000017',

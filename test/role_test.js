@@ -66,8 +66,9 @@ describe('Role Test Case:',function () {
               /*  roleHref:'http://localhost:6002/api/v1.0.0/roles/ujoQyy5P95WoR1KOFjuG5g',
                 applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',*/
 
-                roleHref:'http://localhost:6002/api/v1.0.0/roles/jmVlM29n94ZRRIRXhW1d6w',
-                applicationHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
+                roleUUID:'GUu4Zz0788NughRrzYh7dw',
+                //roleHref:'http://localhost:6002/api/v1.0.0/roles/jmVlM29n94ZRRIRXhW1d6w',
+                applicationHref:'http://192.168.7.26:5000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
             };
 
             return request.get(`${url}/roleDetails`,qs,options).then(function ({statusCode,body,headers,request}) {

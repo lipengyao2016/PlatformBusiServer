@@ -138,6 +138,7 @@ http://localhost:6101/api/v1.0.0/roleDetails
 ```
 {
    roleHref:'http://localhost:6002/api/v1.0.0/roles/jmVlM29n94ZRRIRXhW1d6w',
+    roleUUID:'GUu4Zz0788NughRrzYh7dw',  //支持角色UUID。
    applicationHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
 }
 
