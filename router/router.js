@@ -19,4 +19,12 @@ router.post('/api/:version/deleteUser',userInterface.deleteUser);
 
 router.post('/api/:version/syncAppMenus',menuInterface.syncAppMenus);
 
+/** 2018/6/5 创建角色。
+ lpy-modifyed  */
+router.post('/api/:version/roles',rolesInterface.create);
+
+/** 2018/6/5  更新角色。
+ lpy-modifyed  */
+router.post('/api/:version/roles/:roleUUID',rolesInterface.update);
+
 module.exports = router;

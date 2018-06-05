@@ -24,20 +24,25 @@ let options = {
 };
 
 let rolesTestCase = {
-    name:'工程师',
+    name:'经理',
     description:'data',
     applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
     merchantHref:'http://192.168.7.151:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',
     permissions:[
         {
-            objectHref:'http://192.168.7.151:6001/api/v1.0.0/menus/8KMwPfurIZoEHfENAShS6g',
+            objectUUID:'8KMwPfurIZoEHfENAShS6g',
             objectType:'menu',
-            applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
+            // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
         },
         {
-            objectHref:'http://192.168.7.151:6001/api/v1.0.0/menus/mzNYalrUcBWrGsbxEsQcAQ',
+            objectUUID:'mzNYalrUcBWrGsbxEsQcAQ',
             objectType:'menu',
-            applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
+            // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
+        },
+        {
+            objectUUID:'RCHSP38ZgDXF7pYCxrupTQ',
+            objectType:'operator',
+            // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
         },
     ],
 };
@@ -48,7 +53,7 @@ describe('create test case:',  ()=>{
     it('success create an roles',  ()=> {
         //this.timeout(0);
 
-        return request.post(`http://192.168.7.151:6002/api/v1.0.0/roles`,rolesTestCase).then( ( {statusCode, body, headers, request} )=>{
+        return request.post(`${url}/roles`,rolesTestCase).then( ( {statusCode, body, headers, request} )=>{
             expect(statusCode).to.equal(201);
             expect(headers['content-type']).to.equal('application/json; charset=utf-8');
 
@@ -56,6 +61,44 @@ describe('create test case:',  ()=>{
         });
     });
 });
+
+describe('update test case:', function () {
+    it('success update an roles', function () {
+        //this.timeout(0);
+        let  rolesUUID = '4HEuxTbqUmUhd2JGEVEGFw';
+        let updateInfo = {
+            name:'经理yy',
+            permissions:[
+                {
+                    objectUUID:'z2X3usRDBUWIUWggz8CBfg',
+                    objectType:'menu',
+                    //applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+                },
+                {
+                    objectUUID:'afwMjzj4t2usQNy3DKYvBQ',
+                    objectType:'operator',
+                    // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+                },
+                {
+                    objectUUID:'2ErRZmmFUJidbOD7QkYGKA',
+                    objectType:'operator',
+                    /*applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',*/
+                },
+            ],
+        };
+        updateInfo.description = 'lpy descript';
+        return request.post(`${url}/roles/${rolesUUID}`,updateInfo).then( ( { statusCode,body,headers,request} )=>{
+
+            console.log('roless test update   :' + JSON.stringify(body,null,2));
+
+            expect(statusCode).to.equal(200);
+            expect(headers['content-type']).to.equal('application/json; charset=utf-8');
+            expect(body.description).to.equal(updateInfo.description);
+            //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
+        });
+    });
+});
+
 
 describe('Role Test Case:',function () {
     describe('Role test case:',  function (){

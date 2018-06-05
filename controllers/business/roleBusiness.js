@@ -6,6 +6,9 @@ const menuProxy = require('../proxy/baseProxyFactory').getResourceProxy(Resource
 const request = require('common-request').request;
 const config = require('../../config/config');
 const menuBusiness = require('./menuBusiness');
+const resourceURI = require('../resource/resourceURI');
+const URIParser = resourceURI.v1;
+const roleProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_Roles);
 
 class RoleBusiness{
     constructor(){}
@@ -81,6 +84,41 @@ class RoleBusiness{
             menus:      roleMenuHref,
             operators:  roleOperatorHrefs,
         };
+    }
+
+    convertObjectUUIDToHref(permissions)
+    {
+        let menuUrl = URIParser.baseResourcesURI(config.serverIndexs.Menu_Server,'menus');
+        let operatorUrl = URIParser.baseResourcesURI(config.serverIndexs.Menu_Server,'operators');
+        permissions.map(permissionItem=>{
+            if(permissionItem.objectUUID && !permissionItem.objectHref)
+            {
+                if(permissionItem.objectType =='menu')
+                {
+                    permissionItem.objectHref = `${menuUrl}/${permissionItem.objectUUID}`;
+                }
+                else if(permissionItem.objectType =='operator')
+                {
+                    permissionItem.objectHref = `${operatorUrl}/${permissionItem.objectUUID}`;
+                }
+                delete permissionItem.objectUUID;
+            }
+        });
+    }
+
+
+    async create(data)
+    {
+        this.convertObjectUUIDToHref(data.permissions);
+        let roleObj =await roleProxy.create(data);
+        return roleObj;
+    }
+
+    async update(roleUUID,data)
+    {
+        this.convertObjectUUIDToHref(data.permissions);
+        let roleObj =await roleProxy.execute(`roles/${roleUUID}`,data,'POST');
+        return roleObj;
     }
 
 }
