@@ -67,6 +67,8 @@ class InitHelper{
     {
        let merchantObj = await merchantProxy.create(data.merchant);
        console.log(merchantObj);
+
+
        let applicationObj = await applicationProxy.create(data.application);
 
        for(let i = 0 ;i < data.menu.group.length; i++)
@@ -101,11 +103,13 @@ class InitHelper{
         return userObj;
     }
 
+
+
 }
 
 let initHelper= new InitHelper();
 
-initHelper.init(initHelper.initData).then(data=>{
+initHelper.init(initHelper.testCreateMerchant).then(data=>{
     console.log('end,' + data);
 });
 

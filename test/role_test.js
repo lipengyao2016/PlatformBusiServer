@@ -119,6 +119,31 @@ describe('Role Test Case:',function () {
                     expect(statusCode).to.equal(200);
                 })
         });
+
+
+        it('list roless  ', function () {
+            //this.timeout(0);
+            let merchantLists = [
+                'RQZNqVpEbFxyZ7ayW7x2yA',
+                'PQZNqVpEbFxyZ7ayW7x2yA'];
+            let qs = {
+                //  name:'*good*',
+                //uuid:['3UCHOeNl5tVmN83fkyQfNQ','V1bg0v8SlXKs8OXApykNzg'],
+                /*               offset:0,
+                               limit:1,
+                               createdAt:'[,2018-04-18 18:13:28]'*/
+
+            };
+            return request.get(`${url}/roles`,qs).then( ( { statusCode,body,headers,request} )=>{
+
+                console.log('roless test list   :' + JSON.stringify(body,null,2));
+
+                expect(statusCode).to.equal(200);
+                expect(headers['content-type']).to.equal('application/json; charset=utf-8');
+                //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
+            });
+        });
+
     });
 });
 

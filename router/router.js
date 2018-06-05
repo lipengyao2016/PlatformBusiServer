@@ -27,4 +27,6 @@ router.post('/api/:version/roles',rolesInterface.create);
  lpy-modifyed  */
 router.post('/api/:version/roles/:roleUUID',rolesInterface.update);
 
+router.get('/api/:version/roles',rolesInterface.list);
+
 module.exports = router;

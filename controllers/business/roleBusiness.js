@@ -9,6 +9,9 @@ const menuBusiness = require('./menuBusiness');
 const resourceURI = require('../resource/resourceURI');
 const URIParser = resourceURI.v1;
 const roleProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_Roles);
+const userRoleMemberShipsProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_UserRoleMemberShips);
+const querystring = require('querystring');
+const jsonExpand = require('koa-json-url-expand');
 
 class RoleBusiness{
     constructor(){}
@@ -119,6 +122,23 @@ class RoleBusiness{
         this.convertObjectUUIDToHref(data.permissions);
         let roleObj =await roleProxy.execute(`roles/${roleUUID}`,data,'POST');
         return roleObj;
+    }
+
+    async list(query)
+    {
+        let roleListsObj =await roleProxy.list(query);
+        if(roleListsObj.items.length > 0)
+        {
+            let userRoleMemberShipUrl = URIParser.baseResourcesURI(config.serverIndexs.User_Server,'userRoleMemberShips');
+            roleListsObj.items.map(roleItem=>{
+                let roleUUID =devUtils.getLastResourceUUIDInURL(roleItem.href);
+                roleItem.users = {href: userRoleMemberShipUrl + '?' + querystring.stringify({roleUUID})};
+            });
+
+            roleListsObj = await  jsonExpand.expandResourceWithPick(roleListsObj,'users');
+        }
+
+        return roleListsObj;
     }
 
 }

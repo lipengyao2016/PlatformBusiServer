@@ -212,7 +212,7 @@ http://localhost:6101/api/v1.0.0/syncAppMenus
 
 **http**
 
- get
+ POST
 
 **request**
 
