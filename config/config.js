@@ -102,6 +102,9 @@ try {
         config.ThirdServerByCommonConfig.map( key=>{
             config[key].host=ThirdServer_domain;
         } );
+
+        config['MenuServer'].host = 'localhost';
+
     }
     if( knex_connection && config.knex.connection ){
         Object.keys(knex_connection).map(key=>{

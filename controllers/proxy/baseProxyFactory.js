@@ -12,6 +12,7 @@ let ResourceType =
         Resource_Roles:4,
         Resource_Users:5,
         Resource_Accounts:6,
+        Resource_MenuOrganizations:7,
     };
 
 
@@ -55,6 +56,11 @@ let proxyResourceMap = [
         serverIndex:config.serverIndexs.Account_Server,
     },
 
+    {
+        name:'menuOrganizations',
+        index:ResourceType.Resource_MenuOrganizations,
+        serverIndex:config.serverIndexs.Menu_Server,
+    },
 ];
 
 let resourceProxys = {};

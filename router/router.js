@@ -5,7 +5,7 @@ const Router = require('koa-router');
 let router = new Router();
 const rolesInterface = require('../controllers/interface/rolesInterface');
 const userInterface = require('../controllers/interface/userInterface');
-
+const menuInterface = require('../controllers/interface/menuInterface');
 
 //获取角色下的菜单和操作权限列表，按照菜单目录树形结构返回。
 router.get('/api/:version/roleDetails',rolesInterface.getRoleDetails);
@@ -15,5 +15,8 @@ router.get('/api/:version/roleDetails',rolesInterface.getRoleDetails);
 router.post('/api/:version/registerUser',userInterface.registerUser);
 
 router.post('/api/:version/deleteUser',userInterface.deleteUser);
+
+
+router.post('/api/:version/syncAppMenus',menuInterface.syncAppMenus);
 
 module.exports = router;
