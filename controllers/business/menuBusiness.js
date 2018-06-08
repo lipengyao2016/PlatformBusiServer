@@ -11,6 +11,7 @@ const menuOrganizationsProxy = require('../proxy/baseProxyFactory').getResourceP
 const utils = require('componet-service-framework').utils;
 const devUtils = require('develop-utils');
 const metaMenuProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_MetaMenu);
+const metaMenuOrganizationsProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_MetaMenuOrganizations);
 
 class MenuBusiness {
 
@@ -142,7 +143,7 @@ class MenuBusiness {
 
         let applicationUUID = devUtils.getLastResourceUUIDInURL(applicationHref);
 
-        let menuOrganizationsObj = await menuOrganizationsProxy.list({ownerHref: applicationHref});
+        let menuOrganizationsObj = await metaMenuOrganizationsProxy.list({applicationHref:applicationHref});
         let menuOrganizationUUID;
         let menuOrganizationUpData;
 
@@ -153,7 +154,7 @@ class MenuBusiness {
             menuOrganizationUUID = devUtils.createUUID();
             menuOrganizationUpData = {
                 uuid: menuOrganizationUUID,
-                ownerHref: applicationHref,
+                applicationHref:applicationHref,
                 version: data.version,
                 bCreated: true,
             };
@@ -176,7 +177,7 @@ class MenuBusiness {
         }
 
         let menuObj = await metaMenuProxy.list({
-            menuOrganizationUUID: menuOrganizationUUID
+            metaMenuOrganizationUUID: menuOrganizationUUID
             , expand: 'metaOperators'
         });
 
@@ -187,10 +188,10 @@ class MenuBusiness {
          lpy-modifyed  */
         let orginMenuData = menuObj.items.map(menuItem => {
             let menuUUID = devUtils.getLastResourceUUIDInURL(menuItem.href);
-            let menuOrganizationHref = menuItem.menuOrganization.href;
+            let menuOrganizationHref = menuItem.metaMenuOrganization.href;
 
             oldMenus.push({
-                uuid: menuUUID, menuOrganizationHref: menuOrganizationHref
+                uuid: menuUUID, metaMenuOrganizationHref: menuOrganizationHref
                 , name: menuItem.name, menuId: menuItem.menuId
             });
 
@@ -249,7 +250,7 @@ class MenuBusiness {
                 addMenus.push({
                     uuid: newMenuUUID, name: curMenuItem.name
                     , menuId: curMenuItem.menuId,
-                    menuOrganizationUUID: menuOrganizationUUID
+                    metaMenuOrganizationUUID: menuOrganizationUUID
                 });
                 curMenuItem.operators.map(curOperatorItem => {
                     addOperators.push({
