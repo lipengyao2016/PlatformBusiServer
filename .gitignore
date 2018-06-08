@@ -61,3 +61,5 @@ typings/
 /.idea/
 /logs/
 /site/
+/doc/*.vpp~*
+/doc/*.vux
