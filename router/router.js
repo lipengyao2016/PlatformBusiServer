@@ -19,14 +19,17 @@ router.post('/api/:version/deleteUser',userInterface.deleteUser);
 
 router.post('/api/:version/syncAppMenus',menuInterface.syncAppMenus);
 
-/** 2018/6/5 创建角色。
+/** 2018/6/5 创建角色,支持对象UUID。
  lpy-modifyed  */
 router.post('/api/:version/roles',rolesInterface.create);
 
-/** 2018/6/5  更新角色。
+/** 2018/6/5  更新角色,支持对象UUID。
  lpy-modifyed  */
 router.post('/api/:version/roles/:roleUUID',rolesInterface.update);
 
-router.get('/api/:version/roles',rolesInterface.list);
+
+/** 2018/6/8 此接口废除，改为GRAPHQL
+ lpy-modifyed  */
+//router.get('/api/:version/roles',rolesInterface.list);
 
 module.exports = router;

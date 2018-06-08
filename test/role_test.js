@@ -24,23 +24,28 @@ let options = {
 };
 
 let rolesTestCase = {
-    name:'经理',
+    name:'总监',
     description:'data',
-    applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
-    merchantHref:'http://192.168.7.151:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',
+    applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+    ownerHref:'http://192.168.7.151:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',
     permissions:[
         {
-            objectUUID:'8KMwPfurIZoEHfENAShS6g',
+            objectUUID:'F09LKXBoTA5whbTl3JLZUg',
             objectType:'menu',
             // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
         },
         {
-            objectUUID:'mzNYalrUcBWrGsbxEsQcAQ',
+            objectUUID:'qvL90y8mMh4RO7qbfJvYkg',
             objectType:'menu',
             // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
         },
         {
-            objectUUID:'RCHSP38ZgDXF7pYCxrupTQ',
+            objectUUID:'Gt7wM59tge6xQ1djGXltiA',
+            objectType:'operator',
+            // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
+        },
+        {
+            objectUUID:'KQWZqPEwnv0oedqxiUKPUw',
             objectType:'operator',
             // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
         },
@@ -65,22 +70,23 @@ describe('create test case:',  ()=>{
 describe('update test case:', function () {
     it('success update an roles', function () {
         //this.timeout(0);
-        let  rolesUUID = '4HEuxTbqUmUhd2JGEVEGFw';
+        let  rolesUUID = 'E8W0UkM11QSb3tYgCL1SQA';
         let updateInfo = {
-            name:'经理yy',
+            applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+            name:'总监yy',
             permissions:[
                 {
-                    objectUUID:'z2X3usRDBUWIUWggz8CBfg',
+                    objectUUID:'EZWGvQdQdISSJMApSD32ww',
                     objectType:'menu',
                     //applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
                 },
                 {
-                    objectUUID:'afwMjzj4t2usQNy3DKYvBQ',
+                    objectUUID:'OmE2FGfXZKeLR81ndZzBew',
                     objectType:'operator',
                     // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
                 },
                 {
-                    objectUUID:'2ErRZmmFUJidbOD7QkYGKA',
+                    objectUUID:'zR4GMfnV6BSgJUE9KEGHAg',
                     objectType:'operator',
                     /*applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',*/
                 },
@@ -106,12 +112,12 @@ describe('Role Test Case:',function () {
         it('get a Role details test case:',  function (){
             //this.timeout(0);
             let  qs = {
-              /*  roleHref:'http://localhost:6002/api/v1.0.0/roles/ujoQyy5P95WoR1KOFjuG5g',
-                applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',*/
+                roleUUID:'RJvjbL835PJhCEznh2lgjQ',
+                applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
 
-                roleUUID:'GUu4Zz0788NughRrzYh7dw',
+                //roleUUID:'GUu4Zz0788NughRrzYh7dw',
                 //roleHref:'http://localhost:6002/api/v1.0.0/roles/jmVlM29n94ZRRIRXhW1d6w',
-                applicationHref:'http://192.168.7.26:5000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
+               // applicationHref:'http://192.168.7.26:5000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
             };
 
             return request.get(`${url}/roleDetails`,qs,options).then(function ({statusCode,body,headers,request}) {
