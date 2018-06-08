@@ -14,6 +14,7 @@ let ResourceType =
         Resource_Accounts:6,
         Resource_MenuOrganizations:7,
         Resource_UserRoleMemberShips:8,
+        Resource_MetaMenu:9,
     };
 
 
@@ -66,6 +67,11 @@ let proxyResourceMap = [
         name:'userRoleMemberShips',
         index:ResourceType.Resource_UserRoleMemberShips,
         serverIndex:config.serverIndexs.User_Server,
+    },
+    {
+        name:'metaMenus',
+        index:ResourceType.Resource_MetaMenu,
+        serverIndex:config.serverIndexs.Menu_Server,
     },
 ];
 

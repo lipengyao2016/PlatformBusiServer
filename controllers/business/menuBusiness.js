@@ -10,7 +10,7 @@ const menuProxy = require('../proxy/baseProxyFactory').getResourceProxy(Resource
 const menuOrganizationsProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_MenuOrganizations);
 const utils = require('componet-service-framework').utils;
 const devUtils = require('develop-utils');
-
+const metaMenuProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_MetaMenu);
 
 class MenuBusiness {
 
@@ -124,17 +124,25 @@ class MenuBusiness {
 
 
     async syncAppMenus(data) {
-        let applicationObj = await  applicationProxy.list({name: `*${data.applicationName}*`});
-        if (applicationObj.items.length <= 0) {
-            console.error('syncAppMenus no  applicationHref for appName!!!');
-            devUtils.Error('Error', 404, 1599, `no applicationHref :${data.applicationName} `);
-        }
 
-        let applicationHref = applicationObj.items[0].href;
+        let applicationHref;
+        if(data.applicationHref)
+        {
+            applicationHref = data.applicationHref;
+        }
+        else
+        {
+            let applicationObj = await  applicationProxy.list({name: `*${data.applicationName}*`});
+            if (applicationObj.items.length <= 0) {
+                console.error('syncAppMenus no  applicationHref for appName!!!');
+                devUtils.Error('Error', 404, 1599, `no applicationHref :${data.applicationName} `);
+            }
+            applicationHref = applicationObj.items[0].href;
+        }
 
         let applicationUUID = devUtils.getLastResourceUUIDInURL(applicationHref);
 
-        let menuOrganizationsObj = await menuOrganizationsProxy.list({applicationHref: applicationHref});
+        let menuOrganizationsObj = await menuOrganizationsProxy.list({ownerHref: applicationHref});
         let menuOrganizationUUID;
         let menuOrganizationUpData;
 
@@ -145,7 +153,7 @@ class MenuBusiness {
             menuOrganizationUUID = devUtils.createUUID();
             menuOrganizationUpData = {
                 uuid: menuOrganizationUUID,
-                applicationHref: applicationHref,
+                ownerHref: applicationHref,
                 version: data.version,
                 bCreated: true,
             };
@@ -167,9 +175,9 @@ class MenuBusiness {
             }
         }
 
-        let menuObj = await menuProxy.list({
+        let menuObj = await metaMenuProxy.list({
             menuOrganizationUUID: menuOrganizationUUID
-            , expand: 'operators'
+            , expand: 'metaOperators'
         });
 
 
@@ -179,19 +187,19 @@ class MenuBusiness {
          lpy-modifyed  */
         let orginMenuData = menuObj.items.map(menuItem => {
             let menuUUID = devUtils.getLastResourceUUIDInURL(menuItem.href);
-            let menuGroupHref = menuItem.menuGroup.href;
+            let menuOrganizationHref = menuItem.menuOrganization.href;
 
             oldMenus.push({
-                uuid: menuUUID, menuGroupHref: menuGroupHref
+                uuid: menuUUID, menuOrganizationHref: menuOrganizationHref
                 , name: menuItem.name, menuId: menuItem.menuId
             });
 
-            menuItem.operators.items.map(operatorItem => {
+            menuItem.metaOperators.items.map(operatorItem => {
                 let operatorUUID = devUtils.getLastResourceUUIDInURL(operatorItem.href);
-                let menuUUID = devUtils.getLastResourceUUIDInURL(operatorItem.menu.href);
+                let menuUUID = devUtils.getLastResourceUUIDInURL(operatorItem.metaMenu.href);
 
                 oldOperators.push({
-                    uuid: operatorUUID, menuUUID: menuUUID
+                    uuid: operatorUUID, metaMenuUUID: menuUUID
                     , name: operatorItem.name, operatorId: operatorItem.operatorId
                 });
             });
@@ -227,7 +235,7 @@ class MenuBusiness {
                          lpy-modifyed  */
                         addOperators.push({
                             name: curOperatorItem.name, operatorId: curOperatorItem.operatorId,
-                            menuUUID: findInOldMenuItem.uuid
+                            metaMenuUUID: findInOldMenuItem.uuid
                         });
                     }
 
@@ -246,7 +254,7 @@ class MenuBusiness {
                 curMenuItem.operators.map(curOperatorItem => {
                     addOperators.push({
                         name: curOperatorItem.name, operatorId: curOperatorItem.operatorId,
-                        menuUUID: newMenuUUID
+                        metaMenuUUID: newMenuUUID
                     });
                 });
             }
@@ -267,7 +275,11 @@ class MenuBusiness {
         oldMenus.map(oldMenuItem => {
             let findInNewMenuItem = _.find(newMenus, newMenuItem => _.isEqual(newMenuItem.menuId, oldMenuItem.menuId));
             if (!findInNewMenuItem) {
-                delMenus.push(oldMenuItem.uuid);
+                delMenus.push({
+                    uuid:oldMenuItem.uuid,
+                    name:oldMenuItem.name,
+                    menuId:oldMenuItem.menuId,
+            });
             }
         });
 
@@ -275,7 +287,11 @@ class MenuBusiness {
             let findInNewOperatorItem = _.find(newOperators, newOperatorItem =>
                 _.isEqual(newOperatorItem.operatorId, oldOperatorItem.operatorId));
             if (!findInNewOperatorItem) {
-                delOperators.push(oldOperatorItem.uuid);
+                delOperators.push({
+                    uuid:oldOperatorItem.uuid,
+                    name:oldOperatorItem.name,
+                    operatorId:oldOperatorItem.operatorId,
+                });
             }
         });
 

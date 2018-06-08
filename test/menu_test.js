@@ -11,7 +11,8 @@ const utils = require('componet-service-framework').utils;
 
 
 let menusTestCase = {
-    applicationName: 'LaiKoo-Platform',
+   // applicationName: 'LaiKoo-Platform',
+    applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
     version: '1.0.0',
     menus: [
         {
@@ -35,7 +36,7 @@ let menusTestCase = {
             operators:
                 [
                     {
-                        name:'插件列表xx',
+                        name:'添加插件xx',
                         operatorId:'6129CC59-116C-4DD5-9BB2-74A83712F86A',
                     },
                 ]
