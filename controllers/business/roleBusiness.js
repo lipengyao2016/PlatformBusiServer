@@ -27,7 +27,10 @@ class RoleBusiness{
         let bPlatAdmin = roleUUID == config.platDevMerchantRoleUUID;
         let applicationUUID = devUtils.getResourceUUIDInURL(applicationHref,'applications');
 
-        let roleRet = await request.get(roleHref,{expand:`permissions(limit:100,applicationUUID:${applicationUUID})`});
+        /** 2018/6/9  不对权限进行应用过滤。
+         lpy-modifyed  */
+        /* ,applicationUUID:${applicationUUID}*/
+        let roleRet = await request.get(roleHref,{expand:`permissions(limit:100)`});
         if(roleRet.statusCode != 200 )
         {
             console.error('getRoleDetails get role data is null!!!');

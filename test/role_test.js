@@ -26,7 +26,7 @@ let options = {
 let rolesTestCase = {
     name:'总监',
     description:'data',
-    applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+   // applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
     ownerHref:'http://192.168.7.151:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',
     permissions:[
         {
@@ -70,9 +70,9 @@ describe('create test case:',  ()=>{
 describe('update test case:', function () {
     it('success update an roles', function () {
         //this.timeout(0);
-        let  rolesUUID = 'E8W0UkM11QSb3tYgCL1SQA';
+        let  rolesUUID = 'PsbJySDnsHXw3OGgDTkI7g';
         let updateInfo = {
-            applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+            //applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
             name:'总监yy',
             permissions:[
                 {
@@ -112,7 +112,7 @@ describe('Role Test Case:',function () {
         it('get a Role details test case:',  function (){
             //this.timeout(0);
             let  qs = {
-                roleUUID:'RJvjbL835PJhCEznh2lgjQ',
+                roleUUID:'PsbJySDnsHXw3OGgDTkI7g',
                 applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
 
                 //roleUUID:'GUu4Zz0788NughRrzYh7dw',
