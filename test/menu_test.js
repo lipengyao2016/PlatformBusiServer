@@ -12,10 +12,11 @@ const utils = require('componet-service-framework').utils;
 
 let menusTestCase = {
    // applicationName: 'LaiKoo-Platform',
-    applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+   // applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+    applicationHref:'http://192.168.7.26:6000/api/v1.0.0/applications/J7A2GmLnJRhJxX3EfOy3Rw',
     version: '1.0.1',
     menus: [
-        {
+        /*{
             name: '菜单管理aa',
             menuId:'5350A6A5-F274-4CCE-AD2A-866D04579CE8',
             operators:
@@ -55,26 +56,26 @@ let menusTestCase = {
                         operatorId:'DCFE6EF3-60CD-4DA0-B360-53590321A7B9',
                     },
                 ]
-        },
+        },*/
         {
-            name: '业态管理',
+            name: '商品管理',
             menuId:'268434D6-FF41-4C61-824A-1E04E6FD052F',
             operators:
                 [
                     {
-                        name:'业态列表',
+                        name:'商品列表',
                         operatorId:'4D3653AA-30A9-4777-BA61-90B4C5D7C04E',
                     },
 
                 ]
         },
         {
-            name: '门店管理',
+            name: '订单管理',
             menuId:'2545DAFC-7CAA-4A8D-9B90-72D7EB25C548',
             operators:
                 [
                     {
-                        name:'门店列表',
+                        name:'订单列表',
                         operatorId:'28412bcb-e010-4fc4-81d2-2ff4b1b855f2',
                     },
 

@@ -24,30 +24,25 @@ let options = {
 };
 
 let rolesTestCase = {
-    name:'总监',
+    name:'平台运营人员',
     description:'data',
-   // applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
-    ownerHref:'http://192.168.7.151:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',
+    //type:'admin',
+    //ownerHref:'http://localhost:5000/api/v1.0.0/businessFormats/ESQmj0c7OkWXYclyPxhU7w',
+    ownerHref:'http://192.168.7.26:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',
+
+  /*  uuid:'GUu4Zz0788NughRrzYh7dw',
+    name:'超级管理员',
+    ownerHref:'http://192.168.7.26:6004/api/v1.0.0/merchants/0BlAQi3BXAEEEurhYkVcgA',*/
+
+
     permissions:[
         {
-            objectUUID:'F09LKXBoTA5whbTl3JLZUg',
+            objectUUID:'T61jfYiMCTXojuXr52hCfg',
             objectType:'menu',
-            // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
         },
         {
-            objectUUID:'qvL90y8mMh4RO7qbfJvYkg',
-            objectType:'menu',
-            // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
-        },
-        {
-            objectUUID:'Gt7wM59tge6xQ1djGXltiA',
+            objectUUID:'pUQzMRCOEgBzm7eJNs8eEA',
             objectType:'operator',
-            // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
-        },
-        {
-            objectUUID:'KQWZqPEwnv0oedqxiUKPUw',
-            objectType:'operator',
-            // applicationHref:'http://192.168.7.151:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
         },
     ],
 };
@@ -112,12 +107,11 @@ describe('Role Test Case:',function () {
         it('get a Role details test case:',  function (){
             //this.timeout(0);
             let  qs = {
-                roleUUID:'PsbJySDnsHXw3OGgDTkI7g',
-                applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+                roleUUID:'Sh3Ob1ZGMoI6vCepu6VWQg',
+                applicationHref:'http://192.168.7.26:6000/api/v1.0.0/applications/J7A2GmLnJRhJxX3EfOy3Rw',
 
-                //roleUUID:'GUu4Zz0788NughRrzYh7dw',
-                //roleHref:'http://localhost:6002/api/v1.0.0/roles/jmVlM29n94ZRRIRXhW1d6w',
-               // applicationHref:'http://192.168.7.26:5000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
+              /*  roleUUID:'gHjcxCCYpkad9FuL89X3Sw',
+                applicationHref:'http://192.168.7.26:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',*/
             };
 
             return request.get(`${url}/roleDetails`,qs,options).then(function ({statusCode,body,headers,request}) {

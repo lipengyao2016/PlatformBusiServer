@@ -24,7 +24,7 @@ class RoleBusiness{
             devUtils.Error('Error',404,1599,`no roleHref: ${roleHref} or applicationHref :${applicationHref} `);
         }
         let roleUUID = devUtils.getResourceUUIDInURL(roleHref,'roles');
-        let bPlatAdmin = roleUUID == config.platDevMerchantRoleUUID;
+
         let applicationUUID = devUtils.getResourceUUIDInURL(applicationHref,'applications');
 
         /** 2018/6/9  不对权限进行应用过滤。
@@ -41,8 +41,20 @@ class RoleBusiness{
         let permissions = roleObj.permissions;
         delete roleObj.permissions;
 
-        let menuObj = await menuProxy.execute('treeMenus',{applicationHref});
-        if(bPlatAdmin)
+        let bMerchantAdmin = (roleObj.type == 'admin');
+
+        let ownerHref ;
+        if(roleObj.ownerType == 'merchant')
+        {
+            ownerHref = applicationHref;
+        }
+        else if(roleObj.ownerType == 'businessFormat')
+        {
+            ownerHref = roleObj.owner.href;
+        }
+
+        let menuObj = await menuProxy.execute('treeMenus',{applicationHref,ownerHref});
+        if(bMerchantAdmin)
         {
             roleObj.subMenuGroups = menuObj.subMenuGroups;
         }
@@ -96,20 +108,25 @@ class RoleBusiness{
     {
         let menuUrl = URIParser.baseResourcesURI(config.serverIndexs.Menu_Server,'menus');
         let operatorUrl = URIParser.baseResourcesURI(config.serverIndexs.Menu_Server,'operators');
-        permissions.map(permissionItem=>{
-            if(permissionItem.objectUUID && !permissionItem.objectHref)
-            {
-                if(permissionItem.objectType =='menu')
+
+        if(permissions && permissions.length > 0)
+        {
+            permissions.map(permissionItem=>{
+                if(permissionItem.objectUUID && !permissionItem.objectHref)
                 {
-                    permissionItem.objectHref = `${menuUrl}/${permissionItem.objectUUID}`;
+                    if(permissionItem.objectType =='menu')
+                    {
+                        permissionItem.objectHref = `${menuUrl}/${permissionItem.objectUUID}`;
+                    }
+                    else if(permissionItem.objectType =='operator')
+                    {
+                        permissionItem.objectHref = `${operatorUrl}/${permissionItem.objectUUID}`;
+                    }
+                    delete permissionItem.objectUUID;
                 }
-                else if(permissionItem.objectType =='operator')
-                {
-                    permissionItem.objectHref = `${operatorUrl}/${permissionItem.objectUUID}`;
-                }
-                delete permissionItem.objectUUID;
-            }
-        });
+            });
+        }
+
     }
 
 

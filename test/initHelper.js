@@ -46,6 +46,7 @@ class InitHelper{
             role:{
                  uuid:'GUu4Zz0788NughRrzYh7dw',
                  name:'超级管理员',
+                 type:'admin',
             },
             account:{
                 "name": "admin",          // 账户名
@@ -84,8 +85,7 @@ class InitHelper{
            }
        }
 
-       data.role.applicationHref = applicationObj.href;
-       data.role.merchantHref=merchantObj.href;
+       data.role.ownerHref=merchantObj.href;
        let roleObj = await roleProxy.create(data.role);
 
        data.account.applicationName = data.application.name;
