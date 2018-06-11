@@ -12,6 +12,9 @@ const utils = require('componet-service-framework').utils;
 const devUtils = require('develop-utils');
 const metaMenuProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_MetaMenu);
 const metaMenuOrganizationsProxy = require('../proxy/baseProxyFactory').getResourceProxy(ResourceType.Resource_MetaMenuOrganizations);
+const resourceURI = require('../resource/resourceURI');
+const URIParser = resourceURI.v1;
+
 
 class MenuBusiness {
 
@@ -311,6 +314,57 @@ class MenuBusiness {
 
         return syncmenuObj;
 
+    }
+
+
+    async convertOwnerAndAppData(data)
+    {
+        let ownerHref = data.ownerHref;
+        if(!ownerHref && (data.ownerType && data.ownerUUID) )
+        {
+            if(data.ownerType == 'businessFormat')
+            {
+                data.ownerHref = URIParser.baseResourcesURI(config.serverIndexs.Shop_Server,'businessFormat') + `/${data.ownerUUID}`;
+            }
+            delete data.ownerType;
+            delete data.ownerUUID;
+        }
+
+        if(!data.applicationHref && data.applicationName)
+        {
+            let applicationObj = await  applicationProxy.list({name: `${data.applicationName}`});
+            if(applicationObj.items.length > 0)
+            {
+                data.applicationHref = applicationObj.items[0].href;
+            }
+            else
+            {
+                data.applicationHref = 'http://unknown:6000/***/****/unknown/unknownUUID';
+            }
+            delete  data.applicationName;
+        }
+    }
+
+
+    async createMenuGroups(data)
+    {
+        await  this.convertOwnerAndAppData(data);
+        let createMenuGroupsObj = await menuProxy.execute('menuGroups', data, 'POST');
+        return createMenuGroupsObj;
+    }
+
+    async treeMenus(query)
+    {
+        await  this.convertOwnerAndAppData(query);
+        let treeMenusObj = await menuProxy.execute('treeMenus', query, 'GET');
+        return treeMenusObj;
+    }
+
+    async listMetaMenus(query)
+    {
+        await  this.convertOwnerAndAppData(query)
+        let MetaMenusObj = await menuProxy.execute('metaMenus', query, 'GET');
+        return MetaMenusObj;
     }
 
 }

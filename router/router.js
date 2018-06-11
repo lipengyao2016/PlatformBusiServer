@@ -28,6 +28,20 @@ router.post('/api/:version/roles',rolesInterface.create);
 router.post('/api/:version/roles/:roleUUID',rolesInterface.update);
 
 
+/** 2018/6/11 创建菜单分组,支持应用名称，拥有者UUID,加拥有者类型。
+ lpy-modifyed  */
+router.post('/api/:version/menuGroups',menuInterface.createMenuGroups);
+
+/** 2018/6/11 列表树形菜单分组，支持应用名称，拥有者UUID,加拥有者类型。
+ lpy-modifyed  */
+router.get('/api/:version/treeMenus',menuInterface.treeMenus);
+
+
+/** 2018/6/11 列表元菜单，支持应用名称，拥有者UUID。
+ lpy-modifyed  */
+router.get('/api/:version/metaMenus',menuInterface.listMetaMenus);
+
+
 /** 2018/6/8 此接口废除，改为GRAPHQL
  lpy-modifyed  */
 //router.get('/api/:version/roles',rolesInterface.list);

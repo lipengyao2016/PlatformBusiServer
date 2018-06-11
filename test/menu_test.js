@@ -99,6 +99,30 @@ describe('create test case:',  ()=>{
         })
 
     });
+
+
+    it('list treeMenus  ', function () {
+        //this.timeout(0);
+        let qs = {
+            //ownerHref:'http://192.168.7.26:6000/api/v1.0.0/owners/Sad9YHDXhm9cyMeoNvr2ig',
+           // applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+
+            ownerType:'businessFormat',
+            ownerUUID:'ESQmj0c7OkWXYclyPxhU7w',
+           // applicationName:'LaiKoo-Platform',
+            applicationName:'LaiKoo',
+
+
+        };
+        return request.get(`${url}/treeMenus`,qs).then( ( { statusCode,body,headers,request} )=>{
+
+            console.log('menus test treeMenus   :' + JSON.stringify(body,null,2));
+
+            expect(statusCode).to.equal(200);
+            expect(headers['content-type']).to.equal('application/json; charset=utf-8');
+        });
+    });
+
 });
 
 

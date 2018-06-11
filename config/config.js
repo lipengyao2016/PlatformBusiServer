@@ -73,7 +73,12 @@ let config = {
         port: 6004
     },
 
-    ThirdServerByCommonConfig: ['UserServer','RoleServer','AccountServer','MenuServer','MerchantServer'],
+    ShopServer:{
+        host: externHost,
+        port: 6005
+    },
+
+    ThirdServerByCommonConfig: ['UserServer','RoleServer','AccountServer','MenuServer','MerchantServer','ShopServer'],
     platDevMerchantRoleUUID:"GUu4Zz0788NughRrzYh7dw", //平台开发商的商户角色，即管理员角色。
     serverIndexs:
         {
@@ -82,6 +87,7 @@ let config = {
             Account_Server:  2,
             Menu_Server:  3,
             Merchant_Server:  4,
+            Shop_Server:  5,
         },
 
     cache : {

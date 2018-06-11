@@ -22,3 +22,53 @@ exports.syncAppMenus = async (ctx, next) => {
         devUtils.handlerError(ctx, e);
     }
 };
+
+
+exports.createMenuGroups = async (ctx, next) => {
+    try {
+
+        let body = _.clone(ctx.request.body);
+        let params = ctx.params;
+        let query = _.clone(ctx.request.query);
+
+        let ret = await menuBusiness.createMenuGroups(body);
+        ctx.body = ret;
+        ctx.status = 201;
+    }
+    catch (e) {
+        devUtils.handlerError(ctx, e);
+    }
+};
+
+
+exports.treeMenus = async (ctx, next) => {
+    try {
+
+        let body = _.clone(ctx.request.body);
+        let params = ctx.params;
+        let query = _.clone(ctx.request.query);
+
+        let ret = await menuBusiness.treeMenus(query);
+        ctx.body = ret;
+        ctx.status = 200;
+    }
+    catch (e) {
+        devUtils.handlerError(ctx, e);
+    }
+};
+
+exports.listMetaMenus = async (ctx, next) => {
+    try {
+
+        let body = _.clone(ctx.request.body);
+        let params = ctx.params;
+        let query = _.clone(ctx.request.query);
+
+        let ret = await menuBusiness.listMetaMenus(query);
+        ctx.body = ret;
+        ctx.status = 200;
+    }
+    catch (e) {
+        devUtils.handlerError(ctx, e);
+    }
+};
