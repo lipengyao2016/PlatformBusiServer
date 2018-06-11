@@ -20,9 +20,12 @@ class InitHelper{
             merchant: {
                 name:'平台开发商',
             },
-            application:{
+            application:[{
                 name:'LaiKoo-Platform',
             },
+                {
+                    name:'LaiKoo-Butler',
+                }],
             menu:{
               group: [
                   {

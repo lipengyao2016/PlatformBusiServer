@@ -1,7 +1,3 @@
-/**
- * Created by Administrator on 2016/9/25.
- */
-
 const request = require('common-request').request;
 const expect = require('chai').expect;
 const _ = require('lodash');
@@ -23,51 +19,21 @@ let options = {
     //headers: header,
 };
 
+let applicationsTestCase = {
+    name:'LaiKoo-Butler',
+};
 
-describe('User Test Case:',function () {
-    describe('User test case:',  function (){
 
-        it('register a User  test case:',  function (){
-            //this.timeout(0);
-            let  data = {
-                  user:{
-                      name: 'lijq',
-                      email: 'lijq@sina.com',
-                      //roleHref:'http://192.168.7.151:6002/api/v1.0.0/roles/crIuZ8AcUHBdJAxVVSlHHQ',
-                    //  applicationHref:'http://192.168.7.26:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
-                      ownerHref:'http://192.168.7.26:6004/api/v1.0.0/merchants/eLzwsgnlWpZN8xtvz0qgvw',
-                  },
-                account:
-                    {
-                        "name": "lijq",          // 账户名
-                        "password": new Buffer("888888").toString('base64'),
-                        applicationName:'LaiKoo-Platform',
-                        merchantNumber :'887255',
-                    }
-            };
 
-            return request.post(`${url}/registerUser`,data,options).then(function ({statusCode,body,headers,request}) {
-                    console.log('registerUser body:',JSON.stringify(body,null,2));
-                    expect(statusCode).to.equal(201);
-                })
+describe('create test case:',  ()=>{
+    it('success create an applications',  ()=> {
+        //this.timeout(0);
+
+        return request.post(`http://192.168.7.26:6000/api/v1.0.0/applications/`,applicationsTestCase).then( ( {statusCode, body, headers, request} )=>{
+            expect(statusCode).to.equal(201);
+            expect(headers['content-type']).to.equal('application/json; charset=utf-8');
+
+            console.log('applicationss test  create ' + ' body:'+JSON.stringify(body,null,2));
         });
-
-
-        it('deleteUser a User  test case:',  function (){
-            //this.timeout(0);
-            let  data = {
-                userHref:'http://192.168.7.151:6003/api/v1.0.0/users/wFkx4Dbmhzr2pzUIHrX8bg'
-            };
-
-            return request.post(`${url}/deleteUser`,data,options).then(function ({statusCode,body,headers,request}) {
-                console.log('deleteUser body:',JSON.stringify(body,null,2));
-                expect(statusCode).to.equal(200);
-            })
-        });
-
-
-
     });
 });
-
-
