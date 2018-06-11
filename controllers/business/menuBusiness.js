@@ -320,7 +320,7 @@ class MenuBusiness {
     async convertOwnerAndAppData(data)
     {
         let ownerHref = data.ownerHref;
-        if(!ownerHref && (data.ownerType && data.ownerUUID) )
+        if( (data.ownerType && data.ownerUUID) )
         {
             if(data.ownerType == 'businessFormat')
             {
@@ -330,7 +330,7 @@ class MenuBusiness {
             delete data.ownerUUID;
         }
 
-        if(!data.applicationHref && data.applicationName)
+        if( data.applicationName)
         {
             let applicationObj = await  applicationProxy.list({name: `${data.applicationName}`});
             if(applicationObj.items.length > 0)
