@@ -26,6 +26,7 @@
     "koa-json-url-expand": "^1.0.1",
     "koa-jwt": "^3.3.1",
     "koa-logger": "^3.1.0",
+    "koa-qs": "^2.0.0",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.5",
     "log4js": "^1.1.1",

@@ -15,10 +15,15 @@ const port = process.env.PORT || config.server.port || '3000';
 
 
 const Koa = require('koa');
+
+
 const logger = require('koa-logger');
 const bodyparser = require('koa-bodyparser');
 
-const app = new Koa();
+//const app = new Koa();
+const appKoa = new Koa();
+const app =require('koa-qs')(appKoa, 'extended');
+
 const jsonExpand = require('koa-json-url-expand');
 const jwt = require('koa-jwt');
 const _  =require('lodash');

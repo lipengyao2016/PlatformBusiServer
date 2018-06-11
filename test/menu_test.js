@@ -12,11 +12,11 @@ const utils = require('componet-service-framework').utils;
 
 let menusTestCase = {
    // applicationName: 'LaiKoo-Platform',
-   // applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
-    applicationHref:'http://192.168.7.26:6000/api/v1.0.0/applications/J7A2GmLnJRhJxX3EfOy3Rw',
-    version: '1.0.1',
+    applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+    //applicationHref:'http://192.168.7.26:6000/api/v1.0.0/applications/J7A2GmLnJRhJxX3EfOy3Rw',
+    version: '1.0.2',
     menus: [
-        /*{
+        {
             name: '菜单管理aa',
             menuId:'5350A6A5-F274-4CCE-AD2A-866D04579CE8',
             operators:
@@ -56,8 +56,8 @@ let menusTestCase = {
                         operatorId:'DCFE6EF3-60CD-4DA0-B360-53590321A7B9',
                     },
                 ]
-        },*/
-        {
+        },
+    /*    {
             name: '商品管理',
             menuId:'268434D6-FF41-4C61-824A-1E04E6FD052F',
             operators:
@@ -80,7 +80,7 @@ let menusTestCase = {
                     },
 
                 ]
-        },
+        },*/
 
 
 
