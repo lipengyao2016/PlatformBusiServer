@@ -353,6 +353,13 @@ class MenuBusiness {
         return createMenuGroupsObj;
     }
 
+    async listMenuGroups(data)
+    {
+        await  this.convertOwnerAndAppData(data);
+        let menuGroupsObj = await menuProxy.execute('menuGroups', data, 'GET');
+        return menuGroupsObj;
+    }
+
     async treeMenus(query)
     {
         await  this.convertOwnerAndAppData(query);

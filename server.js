@@ -27,6 +27,7 @@ const app =require('koa-qs')(appKoa, 'extended');
 const jsonExpand = require('koa-json-url-expand');
 const jwt = require('koa-jwt');
 const _  =require('lodash');
+const requestFilter = require('./router/requestFilter');
 
 
 app.use(logger());
@@ -90,6 +91,9 @@ app.use(async (ctx,next)=>{
 
 
 app.use(async (ctx,next)=>{
+
+   // await requestFilter.filter(ctx);
+
     if(ctx.method == 'POST' || ctx.method == 'PUT'){
         console.log(`body:\n${JSON.stringify(ctx.request.body,null,2)}`);
     }

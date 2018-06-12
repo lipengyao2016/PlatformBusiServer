@@ -11,7 +11,7 @@ const utils = require('componet-service-framework').utils;
 
 describe('menuGroup Test Case:',()=>{
     let menuGroupTestCase = {
-        name: '门店管理www',
+        name: '门店管理xxx',
         description: 'datagg',
         uiOrder: 1,
       //  upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/ESQmj0c7OkWXYclyPxhU7w',
