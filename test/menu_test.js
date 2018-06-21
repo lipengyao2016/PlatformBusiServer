@@ -108,9 +108,9 @@ describe('create test case:',  ()=>{
            // applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
 
             ownerType:'businessFormat',
-            ownerUUID:'ESQmj0c7OkWXYclyPxhU7w',
-           // applicationName:'LaiKoo-Platform',
-            applicationName:'LaiKoo',
+            ownerUUID:'6DWqpYyhkq2p2LVWSK5slQ',
+         //   applicationName:'LaiKoo-Platform',
+            applicationName:'LaiKoo-Butler',
 
 
         };

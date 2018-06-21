@@ -132,14 +132,14 @@ class RoleBusiness{
 
     async create(data)
     {
-        this.convertObjectUUIDToHref(data.permissions);
+       // this.convertObjectUUIDToHref(data.permissions);
         let roleObj =await roleProxy.create(data);
         return roleObj;
     }
 
     async update(roleUUID,data)
     {
-        this.convertObjectUUIDToHref(data.permissions);
+       // this.convertObjectUUIDToHref(data.permissions);
         let roleObj =await roleProxy.execute(`roles/${roleUUID}`,data,'POST');
         return roleObj;
     }

@@ -37,12 +37,12 @@ let rolesTestCase = {
 
     permissions:[
         {
-            objectUUID:'T61jfYiMCTXojuXr52hCfg',
+            objectUUID:'5Tj6RGd1S1W6oHEjl2F5wg',
             objectType:'menu',
         },
         {
-            objectUUID:'pUQzMRCOEgBzm7eJNs8eEA',
-            objectType:'operator',
+            objectUUID:'IC4UKTMmxNBFkdhmHDYvXA',
+            objectType:'menu',
         },
     ],
 };
@@ -65,25 +65,20 @@ describe('create test case:',  ()=>{
 describe('update test case:', function () {
     it('success update an roles', function () {
         //this.timeout(0);
-        let  rolesUUID = 'PsbJySDnsHXw3OGgDTkI7g';
+        let  rolesUUID = 'd7DYu4hp3sT3ZO7FBxkueA';
         let updateInfo = {
             //applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
             name:'总监yy',
             permissions:[
                 {
-                    objectUUID:'EZWGvQdQdISSJMApSD32ww',
+                    objectUUID:'FQQvGPuh4fG34L7JnPpRXQ',
                     objectType:'menu',
                     //applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
                 },
                 {
-                    objectUUID:'OmE2FGfXZKeLR81ndZzBew',
-                    objectType:'operator',
+                    objectUUID:'WlIsfQnhMR1ujwJsVhSvJA',
+                    objectType:'menu',
                     // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
-                },
-                {
-                    objectUUID:'zR4GMfnV6BSgJUE9KEGHAg',
-                    objectType:'operator',
-                    /*applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',*/
                 },
             ],
         };
